@@ -1,0 +1,12 @@
+@import "../../variables.css";
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  &>article {
+    min-height: 100vh;
+  }
+}
+
