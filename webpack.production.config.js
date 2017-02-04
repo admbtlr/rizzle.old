@@ -29,6 +29,8 @@ module.exports = {
 
   postcss: [
     require('autoprefixer'),
-    require('postcss-nested')
+    require('postcss-nested'),
+    require('postcss-import'),
+    require('postcss-simple-vars')
   ]
 }

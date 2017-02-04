@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./styles.css";
 import FeedItem from './component.js'
+import 'whatwg-fetch'
 
 class FeedItemContainer extends React.Component {
   constructor(props) {
@@ -11,8 +12,17 @@ class FeedItemContainer extends React.Component {
 
   componentDidMount() {
     let that = this
-    // get an image from
-    fetch('/api/mercury?url=' + encodeURIComponent(this.props.item.url))
+    // get an image from mercury api
+    let url = '/api/mercury?url=' + encodeURIComponent(this.props.item.url)
+
+    if (window.cordova) {
+      url = 'https://mercury.postlight.com/parser?url='+encodeURIComponent(this.props.item.url)
+    }
+
+    fetch(url, {
+      headers: new Headers({
+        'x-api-key': 'vTNatJB4JsgmfnKysiE9cOuJonFib4U9176DRF2z'
+      })})
       .then(function(resp) {
         return resp.json().then(function(json) {
           console.log(json)
@@ -22,8 +32,6 @@ class FeedItemContainer extends React.Component {
               leadImg: json.lead_image_url
             }
           })
-          // that.component.props = that.state
-          // that.render()
         })
       })
   }

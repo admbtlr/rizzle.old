@@ -8,7 +8,7 @@ import 'babel-polyfill';
 // Libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, hashHistory } from 'react-router';
 
 // Routes
 import Routes from './common/components/Routes';
@@ -17,13 +17,23 @@ import Routes from './common/components/Routes';
 import './common/base.css';
 
 
-// ID of the DOM element to mount app on
-const DOM_APP_EL_ID = 'app';
+window.startApp = function() {
+  // ID of the DOM element to mount app on
+  const DOM_APP_EL_ID = 'app';
+  let history = browserHistory;
 
-// Render the router
-ReactDOM.render((
-  <Router history={browserHistory}>
-    {Routes}
-  </Router>
-), document.getElementById(DOM_APP_EL_ID));
+  if (window.cordova) {
+    history = hashHistory;
+  }
 
+  // Render the router
+  ReactDOM.render((
+    <Router history={history}>
+      {Routes}
+    </Router>
+  ), document.getElementById(DOM_APP_EL_ID));
+}
+
+if (!window.cordova) {
+  window.startApp()
+}
