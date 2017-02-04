@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames"
 import styles from "./styles.css";
 // import
 
@@ -8,12 +9,29 @@ class FeedItem extends React.Component {
     this.props = props;
   }
 
+  // componentWillReceiveProps(props) {
+  //   console.log('Received props')
+  // }
+
   render() {
-    let {feed_item_id, feed_name, url, title, author, body} = this.props.item
+    let {feed_item_id, feed_name, url, title, author, body, leadImg} = this.props.item
     let bodyHtml = { __html: body }
+    let classes = {
+      'heading-has-image': leadImg
+    }
+    classes[styles.heading] = true
+    let itemClasses = classNames(classes)
+    let inlineStyle = leadImg ?
+      {
+        backgroundImage: 'url(' + leadImg + ')',
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        color: '#ee3399'
+      } :
+      {}
+
     return (
       <article>
-        <div className={styles.heading}>
+        <div className={itemClasses} style={inlineStyle}>
           <aside>{feed_name}</aside>
           <h1><a href={url || ''}>{title}</a></h1>
           <h2>{author}</h2>

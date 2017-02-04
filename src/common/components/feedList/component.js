@@ -19,7 +19,7 @@ class FeedList extends React.Component {
   renderSlide({key, index}) {
     let item = this.props.items[index]
     if (item) {
-      return <FeedItemContainer item={item} key={item.feed_item_id} />
+      return <FeedItemContainer className={styles.item} item={item} key={item.feed_item_id} />
     }
   }
 }

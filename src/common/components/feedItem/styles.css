@@ -1,6 +1,11 @@
 @import "../../variables.css";
 
+.item {
+  height: 100vh;
+}
+
 .heading, .body {
+  position: relative;
   margin: 0;
   padding: calc($step * .5);
   width: 100vw;
@@ -11,11 +16,12 @@
 .heading {
   min-height: 66vh;
   background-color: #ee3399;
+  background-size: cover;
+  color: white;
 
   h1 {
     font-size: calc($step * 2);
     line-height: 1;
-    color: white;
     text-transform: uppercase;
     a {
       color: inherit;
