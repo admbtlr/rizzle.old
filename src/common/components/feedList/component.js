@@ -13,7 +13,7 @@ class FeedList extends React.Component {
   }
 
   render() {
-    return <VirtualizeSwipeableViews slideRenderer={this.renderSlide.bind(this)} />
+    return <VirtualizeSwipeableViews slideRenderer={this.renderSlide.bind(this)} slideStyle={{height: '100vh', '-webkit-overflow-scrolling': 'touch'}} />
   }
 
   renderSlide({key, index}) {

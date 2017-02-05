@@ -31,9 +31,11 @@ class FeedItem extends React.Component {
     return (
       <article>
         <div className={itemClasses} style={inlineStyle}>
-          <aside>{feed_name}</aside>
-          <h1><a href={url || ''}>{title}</a></h1>
-          <h2>{author}</h2>
+          <div className={styles.header}>
+            <h1><a href={url || ''}>{title}</a></h1>
+            <h2>{author}</h2>
+            <aside>{feed_name}</aside>
+          </div>
         </div>
         <div className={styles.body} dangerouslySetInnerHTML={bodyHtml}></div>
       </article>

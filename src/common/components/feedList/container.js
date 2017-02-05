@@ -19,7 +19,8 @@ class FeedListContainer extends React.Component {
     fetch(url)
       .then(function(resp) {
         return resp.json().then(function(json) {
-          that.setState({items: json.feed_items})
+          let items = json.feed_items
+          that.setState({items: items})
         })
       })
   }
