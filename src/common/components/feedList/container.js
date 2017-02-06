@@ -20,7 +20,11 @@ class FeedListContainer extends React.Component {
       .then(function(resp) {
         return resp.json().then(function(json) {
           let items = json.feed_items
-          that.setState({items: items})
+          let smeti = new Array(items.length)
+          items.forEach((item, index, items) =>
+            smeti[items.length - index - 1] = item
+          )
+          that.setState({items: smeti})
         })
       })
   }
