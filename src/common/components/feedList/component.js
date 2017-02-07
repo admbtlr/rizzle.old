@@ -13,13 +13,28 @@ class FeedList extends React.Component {
   }
 
   render() {
-    return <VirtualizeSwipeableViews slideRenderer={this.renderSlide.bind(this)} slideStyle={{height: '100vh', '-webkit-overflow-scrolling': 'touch'}} />
+    return <VirtualizeSwipeableViews
+      slideRenderer={this.renderSlide.bind(this)}
+      slideStyle={{height: '100vh', '-webkit-overflow-scrolling': 'touch'}}
+      onChangeIndex={this.onChangeIndex.bind(this)}
+    />
+  }
+
+  onChangeIndex(index, lastIndex) {
+    if (index > lastIndex) {
+      let item = this.props.items[lastIndex]
+      this.props.markRead(item)
+    }
   }
 
   renderSlide({key, index}) {
     let item = this.props.items[index]
     if (item) {
-      return <FeedItemContainer className={styles.item} item={item} key={item.feed_item_id} />
+      return <FeedItemContainer
+        className={styles.item}
+        item={item}
+        key={item.feed_item_id}
+      />
     }
   }
 }

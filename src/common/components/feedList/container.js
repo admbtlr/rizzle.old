@@ -6,6 +6,8 @@ class FeedListContainer extends React.Component {
   constructor() {
     super();
     this.state = { items: [] }
+
+    this.accessToken = '07de039941196f956e9e86e202574419'
   }
 
   componentDidMount() {
@@ -13,7 +15,7 @@ class FeedListContainer extends React.Component {
     let url = '/api/unread'
 
     if (window.cordova) {
-      url = 'https://feedwrangler.net/api/v2/feed_items/list?access_token=07de039941196f956e9e86e202574419'
+      url = 'https://feedwrangler.net/api/v2/feed_items/list?read=false&access_token=' + this.accessToken
     }
 
     fetch(url)
@@ -29,8 +31,25 @@ class FeedListContainer extends React.Component {
       })
   }
 
-  render() {
-    return <FeedList items={this.state.items} />;
+  render () {
+    return <FeedList items={this.state.items} markRead={this.markRead.bind(this)}/>;
+  }
+
+  markRead (item) {
+    let url = '/api/markread?'
+    if (window.cordova) {
+      url = 'https://feedwrangler.net/api/v2/feed_items/update?'
+    }
+    url += 'access_token=' + this.accessToken
+    url += '&feed_item_id=' + item.feed_item_id
+    url += '&read=true'
+
+    fetch(url)
+      .then(function(resp) {
+      })
+      .catch(function(e) {
+        console.log(e)
+      })
   }
 }
 
