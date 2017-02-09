@@ -29,7 +29,8 @@ class FeedItemContainer extends React.Component {
           that.setState({
             item: {
               ...that.state.item,
-              leadImg: json.lead_image_url
+              leadImg: json.lead_image_url,
+              body: json.content
             }
           })
         })

@@ -33,8 +33,17 @@ app.get('/style.css', (req, res) => {
 });
 
 app.get('/api/unread/', (req, res) => {
-  const unreadUrl = 'https://feedwrangler.net/api/v2/feed_items/list?access_token=07de039941196f956e9e86e202574419'
+  const unreadUrl = 'https://feedwrangler.net/api/v2/feed_items/list?access_token=07de039941196f956e9e86e202574419&read=false'
   request(unreadUrl).pipe(res)
+})
+
+app.get('/api/markread', (req, res) => {
+  let markReadUrl = 'https://feedwrangler.net/api/v2/feed_items/update?access_token=07de039941196f956e9e86e202574419&read=true'
+  markReadUrl += '&feed_item_id=' + req.query['feed_item_id']
+  console.log(markReadUrl)
+  console.log(req.query)
+  console.log(req.query['feed_item_id'])
+  request(markReadUrl).pipe(res)
 })
 
 app.get('/api/mercury/', (req, res) => {
