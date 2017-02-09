@@ -4,8 +4,9 @@ import styles from "./styles.css";
 
 class FeedItem extends React.Component {
   constructor(props) {
-    super(props);
-    this.props = props;
+    super(props)
+    this.props = props
+    this.fontClass = this.getFontClass()
   }
 
   // componentWillReceiveProps(props) {
@@ -18,7 +19,7 @@ class FeedItem extends React.Component {
     let coverClasses = classNames(styles.coverImage, styles.coverImageFixed)
 
     return (
-      <article>
+      <article className={styles[this.fontClass]}>
         <div className={styles.cover}>
           <div
             className={coverClasses}
@@ -32,6 +33,10 @@ class FeedItem extends React.Component {
         <div className={styles.body} dangerouslySetInnerHTML={bodyHtml}></div>
       </article>
     )
+  }
+
+  getFontClass () {
+    return 'fonts' + (Math.round((Math.random()*8))+1)
   }
 }
 

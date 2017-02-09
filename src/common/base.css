@@ -17,7 +17,7 @@ body {
 :global(#container) {
   width: 100%;
 
-  @media (min-width: 960px) {
+  @media (min-width: 1200px) {
     width: 960px;
     margin: 0 auto;
   }

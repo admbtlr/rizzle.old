@@ -50,7 +50,6 @@
   h1 {
     font-size: calc($step * 1.5);
     line-height: 1;
-    text-transform: uppercase;
     a {
       color: inherit;
       text-decoration: none;
@@ -106,5 +105,102 @@ div:nth-child(0n+4) {
   }
 
   iframe {
+  }
+}
+
+.fonts1 {
+  .heading {
+    font-family: "Avenir Next", sans-serif;
+  }
+  .body {
+    font-family: "Bodoni 72 Oldstyle", serif;
+  }
+}
+
+.fonts2 {
+  .heading {
+    font-family: "Didot", sans-serif;
+  }
+  .body {
+    font-family: "Futura", serif;
+  }
+}
+
+.fonts3 {
+  .heading {
+    font-family: "Futura", sans-serif;
+
+    h1 {
+      font-weight: 500;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+
+.fonts4 {
+  .heading {
+    font-family: "Avenir", sans-serif;
+
+    h1 {
+      font-weight: 300;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+.fonts5 {
+  .heading {
+    font-family: "Avenir Next", sans-serif;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Bodoni 72 Oldstyle", serif;
+  }
+}
+
+.fonts6 {
+  .heading {
+    font-family: "Didot", sans-serif;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Futura", serif;
+  }
+}
+
+.fonts7 {
+  .heading {
+    font-family: "Futura", sans-serif;
+
+    h1 {
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+
+.fonts8 {
+  .heading {
+    font-family: "Avenir", sans-serif;
+
+    h1 {
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
   }
 }
