@@ -15,22 +15,14 @@ class FeedItem extends React.Component {
   render() {
     let {feed_item_id, feed_name, url, title, author, body, leadImg} = this.props.item
     let bodyHtml = { __html: body }
-    let classes = {
-      'heading-has-image': leadImg
-    }
-    classes[styles.heading] = true
-    let itemClasses = classNames(classes)
-    let inlineStyle = leadImg ?
-      {
-        backgroundImage: 'url(' + leadImg + ')',
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        color: '#ee3399'
-      } :
-      {}
+    let coverClasses = classNames(styles.coverImage, styles.coverImageFixed)
 
     return (
       <article>
-        <div className={itemClasses} style={inlineStyle}>
+        <div className={styles.cover}>
+          <div
+            className={coverClasses}
+            style={{ backgroundImage: 'url(' + leadImg + ')' }} />
           <div className={styles.header}>
             <h1><a href={url || ''}>{title}</a></h1>
             <h2>{author}</h2>

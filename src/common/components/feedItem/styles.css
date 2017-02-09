@@ -4,7 +4,7 @@
   height: 100vh;
 }
 
-.heading, .body {
+.cover, .body {
   position: relative;
   margin: 0;
   padding: calc($step * .5);
@@ -13,11 +13,9 @@
   overflow: hidden;
 }
 
-.heading {
+.cover {
   min-height: 100vh;
   background-color: #ee3399;
-  background-size: cover;
-  background-position: center;
   color: white;
   position: relative;
 
@@ -31,15 +29,18 @@
     height: 100%;
     background-color: rgba(0,0,0,0.3);
   }
+}
 
-  .header {
-    position: absolute;
-    bottom: $step;
-  }
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 5;
 
   h1, h2, aside {
     position: relative;
-    z-index: 5;
   }
 
   h1 {
@@ -57,7 +58,31 @@
   }
 }
 
+.coverImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+div:nth-child(0n+4) {
+
+  .coverImageFixed {
+    position: fixed;
+    left: 300vw;
+    width: 100vw;
+  }
+
+}
+
+
 .body {
+  position: relative;
+  z-index: 10;
+  background-color: white;
   padding: calc($step * .5);
   font-family: "Bodoni 72 Oldstyle", serif;
   hyphens: auto;
