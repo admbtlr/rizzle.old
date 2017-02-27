@@ -1,5 +1,5 @@
 
-export const ADD_ITEM = 'ADD_ITEM'
+export const ADD_ITEM = 'ITEM_ADDED'
 export const MARK_READ = 'MARK_READ'
 export const MARK_UNREAD = 'MARK_UNREAD'
 

@@ -7,21 +7,23 @@ import 'babel-polyfill';
 
 // Libraries
 import React from 'react';
-import ReactDOM from 'react-dom';
-import FeedListContainer from "./containers/FeedList.js"
-import ToolbarContainer from "./containers/Toolbar.js"
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rizzle from './redux/reducers.js'
+import App from './components/App.js'
 
 // Base styling
 import './common/base.css';
 
 
 window.startApp = function() {
-  // Render the router
-  ReactDOM.render((
-    <div>
-      <FeedListContainer />
-      <ToolbarContainer />
-    </div>
+  let store = createStore(rizzle)
+
+  render((
+    <Provider store={store}>
+      <App />
+    </Provider>
   ), document.getElementById('app'))
 }
 

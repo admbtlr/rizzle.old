@@ -5,6 +5,8 @@ const initialState = {
 }
 
 const rizzle = (state = initialState, action) => {
+  console.log(state)
+  console.log(action)
   switch (action.type) {
     case ADD_ITEM:
       return Object.assign({}, state, {
