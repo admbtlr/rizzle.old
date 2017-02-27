@@ -1,0 +1,22 @@
+@import "../common/variables.css";
+
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 14px 28px;
+  color: white;
+}
+
+.mercurify {}
+.markUnread {}
+.saveForLater {}
+
+.mercurify, .markUnread, .saveForLater {
+  color: white;
+}

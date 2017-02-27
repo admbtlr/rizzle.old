@@ -1,0 +1,314 @@
+@import "../common/variables.css";
+
+.item {
+  height: 100vh;
+}
+
+.itemArticle {
+  background-color: #f3f3f3;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.cover, .body {
+  position: relative;
+  margin: 0;
+  /*padding: calc($step * .5);*/
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.cover {
+  min-height: 100vh;
+  background-color: #ee3399;
+  color: white;
+  position: relative;
+}
+
+.coverCover {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.coverMultiply {
+
+  .coverImage {
+    -webkit-filter: grayscale(100%);
+  }
+
+  .coverCover {
+    mix-blend-mode: multiply;
+  }
+}
+
+.header {
+  position: absolute;
+  /*width: calc(100% - $step);*/
+
+  h1, h2, aside {
+    position: relative;
+  }
+
+  h1 {
+    color: white;
+    margin: 0 calc($step*.5);
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+  }
+
+  h1 {
+    font-size: calc($step*1.5);
+    line-height: 1;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+  }
+}
+
+h2, aside {
+  text-align: center;
+}
+
+.headerBottom {
+  bottom: $step;
+}
+
+.headerMiddle {
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 $step;
+}
+
+.headerCentered {
+  text-align: center;
+}
+
+.headerUnderlined {
+  h1 {
+    border-bottom: 5px solid;
+  }
+}
+
+.headerCentered.headerUnderlined {
+  h1 {
+    display: inline;
+    border-bottom: 1px solid;
+  }
+}
+
+.headerItalic {
+  h1 {
+    font-style: italic;
+  }
+}
+
+.headerBlock {
+  h1 {
+    display: block !important;
+    padding: calc($step * .25);
+    background-color: black;
+    text-shadow: none;
+  }
+}
+
+.headerBlockInverse {
+  h1 {
+    display: block !important;
+    padding: calc($step * .25);
+    background-color: white;
+    color: black;
+    text-shadow: none;
+  }
+}
+
+.headerSmall {
+  h1 {
+    font-size: $step;
+    line-height: 1.6;
+  }
+}
+
+.coverImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+div:nth-child(0n+4) {
+
+/*  .coverImageFixed {
+    position: fixed;
+    left: 300vw;
+    width: 100%;
+  }
+*/
+}
+
+
+.body {
+  position: relative;
+  z-index: 10;
+  background-color: #f3f3f3;
+  padding: calc($step * .75);
+  font-family: "Cochin", serif;
+  hyphens: auto;
+
+  img, video, iframe, pre {
+    width: 100vw;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: auto !important;
+    margin: 0 calc($step * .75 * -1);
+    border: 0;
+    overflow: scroll;
+  }
+
+  a, a:active, a:visited {
+    color: inherit !important;
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 19px, rgba(200, 200, 0, 0.3) 19px, rgba(200, 200, 0, 0.3) 24px);
+    /*display: inline-block;*/
+    /*padding-bottom: 0;*/
+    /*line-height: .5;*/
+
+    img {
+      /* hide link gradient */
+      margin-bottom: -6px;
+    }
+  }
+
+  figure {
+    padding: 0;
+    margin: 0 0 $step;
+  }
+
+  iframe {
+  }
+
+  blockquote {
+    margin: 0 0 $step;
+    font-style: italic;
+    background-color: white;
+    left: -20px;
+    width: 100vw;
+    padding: 20px;
+    /* display: block; */
+    position: relative;  }
+
+  &:first-letter {
+    font-size: calc($step * 3);
+    float: left;
+    display: block;
+    margin: 24px 12px 12px 0;
+    font-family: Avenir;
+  }
+}
+
+.fonts1 {
+  .header {
+    font-family: "Avenir Next", sans-serif;
+  }
+  .body {
+    font-family: "Cochin", serif;
+  }
+}
+
+.fonts2 {
+  .header {
+    font-family: "Didot", serif;
+  }
+  .body {
+    font-family: "Gill Sans", sans-serif;
+  }
+}
+
+.fonts3 {
+  .header {
+    font-family: "Futura", sans-serif;
+
+    h1 {
+      font-weight: 500;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+
+.fonts4 {
+  .header {
+    font-family: "Cochin", sans-serif;
+
+    h1 {
+      font-weight: 300;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+.fonts5 {
+  .header {
+    font-family: "Avenir Next", sans-serif;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Cochin", serif;
+  }
+}
+
+.fonts6 {
+  .header {
+    font-family: "Didot", serif;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Gill Sans", serif;
+  }
+}
+
+.fonts7 {
+  .header {
+    font-family: "Gill Sans", sans-serif;
+
+    h1 {
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
+
+.fonts8 {
+  .header {
+    font-family: "Avenir", sans-serif;
+
+    h1 {
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+  }
+  .body {
+    font-family: "Hoefler Text", serif;
+  }
+}
