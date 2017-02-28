@@ -5,6 +5,7 @@ import styles from "./Toolbar.css"
 class Toolbar extends React.Component {
 
   render() {
+    let classes = classNames(styles.toolbar, this.props.isVisible ? styles.visible : '')
     return (
       <div className={styles.toolbar}>
         <button className={styles.mercurify}>M</button>

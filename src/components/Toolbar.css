@@ -2,7 +2,7 @@
 
 .toolbar {
   position: fixed;
-  bottom: 0;
+  bottom: -50px;
   left: 0;
   width: 100%;
   background-color: black;
@@ -11,6 +11,11 @@
   justify-content: space-between;
   padding: 14px 28px;
   color: white;
+  transition: transform .3s;
+}
+
+.visible {
+  transform: translateY(50px);
 }
 
 .mercurify {}
