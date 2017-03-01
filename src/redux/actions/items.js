@@ -3,6 +3,8 @@ export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING'
 export const ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS'
 export const ITEM_MARK_READ_SUCCESS = 'ITEM_MARK_READ_SUCCESS'
 
+let feedWranglerAccessToken = '07de039941196f956e9e86e202574419'
+
 export function itemsHasErrored(bool) {
   return {
     type: ITEMS_HAS_ERRORED,
@@ -28,7 +30,8 @@ export function itemMarkReadSuccess(item) {
   };
 }
 
-export function itemsFetchData(url) {
+export function itemsFetchData() {
+  const url = getUnreadItemsUrl()
   return (dispatch) => {
     dispatch(itemsIsLoading(true))
     fetch(url)
@@ -45,7 +48,16 @@ export function itemsFetchData(url) {
   };
 }
 
-export function itemMarkRead(url) {
+function getUnreadItemsUrl () {
+  let url = '/api/unread'
+  if (window.cordova) {
+    url = 'https://feedwrangler.net/api/v2/feed_items/list?read=false&access_token=' + feedWranglerAccessToken
+  }
+  return url
+}
+
+export function itemMarkRead (item) {
+  const url = getMarkReadUrl(item)
   return (dispatch) => {
     dispatch(itemsIsLoading(true))
     fetch(url)
@@ -60,4 +72,15 @@ export function itemMarkRead(url) {
       .then((json) => dispatch(itemMarkReadSuccess(json)))
       .catch(() => dispatch(itemsHasErrored(true)));
   }
+}
+
+function getMarkReadUrl (item) {
+  let url = '/api/markread?'
+  if (window.cordova) {
+    url = 'https://feedwrangler.net/api/v2/feed_items/update?'
+  }
+  url += 'access_token=' + feedWranglerAccessToken
+  url += '&feed_item_id=' + item.feed_item_id
+  url += '&read=true'
+  return url
 }

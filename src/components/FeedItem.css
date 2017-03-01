@@ -34,7 +34,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.2);
 }
 
 .coverMultiply {
@@ -136,6 +136,12 @@ h2, aside {
   }
 }
 
+.headerSheepStealer {
+  h1 {
+    letter-spacing: .5em;
+  }
+}
+
 .coverImage {
   position: absolute;
   top: 0;
@@ -145,17 +151,6 @@ h2, aside {
   background-size: cover;
   background-position: center;
 }
-
-div:nth-child(0n+4) {
-
-/*  .coverImageFixed {
-    position: fixed;
-    left: 300vw;
-    width: 100%;
-  }
-*/
-}
-
 
 .body {
   position: relative;
@@ -213,6 +208,7 @@ div:nth-child(0n+4) {
     display: block;
     margin: 24px 12px 12px 0;
     font-family: Avenir;
+    font-weight: 700;
   }
 }
 
@@ -243,7 +239,7 @@ div:nth-child(0n+4) {
     }
   }
   .body {
-    font-family: "Hoefler Text", serif;
+    font-family: "Cochin", serif;
   }
 }
 

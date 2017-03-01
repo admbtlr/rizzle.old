@@ -18,6 +18,19 @@ class FeedItem extends React.Component {
   // }
 
   componentDidMount () {
+    this.loadMercuryStuff()
+    this.resizeTitleFontToFit()
+  }
+
+  loadMercuryStuff () {
+    // let url = '/api/mercury?url=' + encodeURIComponent(this.props.item.url)
+    // if (window.cordova) {
+    //   url = 'https://mercury.postlight.com/parser?url='+encodeURIComponent(this.props.item.url)
+    // }
+    this.props.loadMercuryStuff(this.props.item)
+  }
+
+  resizeTitleFontToFit () {
     let windowWidth = window.innerWidth
     let titleEl = document.getElementById('js-title')
     let titleWidth = this.calculateElementWidth(titleEl)
@@ -92,7 +105,7 @@ class FeedItem extends React.Component {
   }
 
   isMultiply () {
-    return Math.random() > 0.3
+    return Math.random() > 0.5
   }
 
   getHeaderClasses = () => {
@@ -111,13 +124,18 @@ class FeedItem extends React.Component {
     if (Math.random() > 0.5) {
       classes.push(styles.headerItalic)
     }
-    if (Math.random() > 0.6) {
+    if (Math.random() > 0.8) {
       classes.push(styles.headerBlock)
-    } else if (Math.random() > 0.6) {
+    } else if (Math.random() > 0.8) {
       classes.push(styles.headerBlockInverse)
     }
     if (this.props.item.title.length > 80) {
       classes.push(styles.headerSmall)
+    } else if (Math.random() > 0.6 &&
+        classes.indexOf(styles.headerBlock) === -1 &&
+        classes.indexOf(styles.headerBlockInverse) === -1) {
+      classes.push(styles.headerSmall)
+      classes.push(styles.headerSheepStealer)
     }
     return classes
   }

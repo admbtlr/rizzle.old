@@ -23,7 +23,7 @@ class FeedList extends React.Component {
   onChangeIndex(index, lastIndex) {
     if (index > lastIndex) {
       let item = this.props.items[lastIndex]
-      this.markRead(item)
+      this.props.markRead(item)
     }
   }
 
@@ -39,29 +39,7 @@ class FeedList extends React.Component {
   }
 
   componentDidMount() {
-    this.loadItems()
-  }
-
-  loadItems() {
-    let url = '/api/unread'
-
-    if (window.cordova) {
-      url = 'https://feedwrangler.net/api/v2/feed_items/list?read=false&access_token=' + this.accessToken
-    }
-
-    this.props.fetchData(url)
-  }
-
-  markRead(item) {
-    let url = '/api/markread?'
-    if (window.cordova) {
-      url = 'https://feedwrangler.net/api/v2/feed_items/update?'
-    }
-    url += 'access_token=' + this.accessToken
-    url += '&feed_item_id=' + item.feed_item_id
-    url += '&read=true'
-
-    this.props.markRead(url)
+    this.props.fetchData()
   }
 }
 

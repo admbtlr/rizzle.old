@@ -27,7 +27,26 @@ export function items(state = initialState, action) {
     case 'ITEM_MARK_READ_SUCCESS':
       // TODO actually we need to mark the item as read...
       return state
+    case 'ITEM_LOAD_MERCURY_STUFF_SUCCESS':
+      return state.map((item) => {
+        if (item === action.item) {
+          return addMercuryStuffToItem(item, action.mercuryStuff)
+        } else {
+          return item
+        }
+      })
     default:
       return state
+  }
+}
+
+function addMercuryStuffToItem (item, mercury) {
+  let content = mercury.content.length && mercury.content.length > item.body.length
+    ? mercury.content
+    : item.body
+  return {
+    ...item,
+    leadImg: mercury.lead_image_url,
+    body: content
   }
 }
