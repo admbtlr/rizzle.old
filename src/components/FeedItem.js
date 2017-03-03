@@ -62,7 +62,7 @@ class FeedItem extends React.Component {
     }
 
     return (
-      <article className={articleClasses}>
+      <article className={articleClasses} onClick={this.openLinksExternally}>
         <div className={coverClasses}>
           <div
             className={coverImageClasses}
@@ -77,6 +77,16 @@ class FeedItem extends React.Component {
         <div className={styles.body} dangerouslySetInnerHTML={bodyHtml}></div>
       </article>
     )
+  }
+
+  openLinksExternally = (e) => {
+    if (e.target.tagName === 'A') {
+      e.stopPropagation()
+      e.preventDefault()
+      let URL = e.target.getAttribute('href')
+      window.open(url, '_system')
+    }
+    console.log(e)
   }
 
   getFontClass () {

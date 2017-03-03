@@ -15,6 +15,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.adambutler.rizzle"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.adambutler.rizzle"
         }
     },
     "dependent_plugins": {}

@@ -16,6 +16,7 @@
 		5A4B19E18EA5475DA9689EE8 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 088C561C14C34CD890D7EDA3 /* CDVStatusBar.m */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
 		90A994A7BDBA41D29A539346 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BF263E3A70A84C01899E9CFB /* CDVSplashScreen.m */; };
+		273A777C74C04572960CADB2 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9113DCBE8DDF4E8380A1E2B6 /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Rizzle/config.xml; sourceTree = "<group>"; };
+		9113DCBE8DDF4E8380A1E2B6 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		FC011A837C1C4B569BF92D59 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 				278A68309EA5477EA0C85AD1 /* CDVViewController+SplashScreen.m */,
 				B3CD94BEE2C24C358C64853A /* CDVSplashScreen.h */,
 				3A4D6CF2EFA74C8FBBE698F7 /* CDVViewController+SplashScreen.h */,
+				9113DCBE8DDF4E8380A1E2B6 /* CDVInAppBrowser.m */,
+				FC011A837C1C4B569BF92D59 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = Rizzle/Plugins;
@@ -295,6 +300,7 @@
 				5A4B19E18EA5475DA9689EE8 /* CDVStatusBar.m in Sources */,
 				90A994A7BDBA41D29A539346 /* CDVSplashScreen.m in Sources */,
 				38BE87AA1D15427EB15B57B2 /* CDVViewController+SplashScreen.m in Sources */,
+				273A777C74C04572960CADB2 /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
