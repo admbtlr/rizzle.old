@@ -1,3 +1,5 @@
+import 'whatwg-fetch'
+
 export const ITEM_DID_SCROLL = 'ITEM_DID_SCROLL'
 export const ITEM_HAS_ERRORED = 'ITEM_HAS_ERRORED'
 export const ITEM_IS_LOADING = 'ITEM_IS_LOADING'
