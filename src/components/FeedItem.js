@@ -80,11 +80,18 @@ class FeedItem extends React.Component {
   }
 
   openLinksExternally = (e) => {
-    if (e.target.tagName === 'A') {
-      e.stopPropagation()
-      e.preventDefault()
-      let URL = e.target.getAttribute('href')
-      window.open(url, '_system')
+    let el = e.target
+    // TODO don't rely on this
+    while (el.tagName !== 'ARTICLE') {
+      if (el.tagName === 'A') {
+        e.stopPropagation()
+        e.preventDefault()
+        let url = el.getAttribute('href')
+        window.open(url, '_system')
+        break
+      }
+      el = el.parentElement
+
     }
     console.log(e)
   }
