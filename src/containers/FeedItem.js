@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import FeedItem from '../components/FeedItem.js'
-import { itemLoadMercuryStuff }  from '../redux/actions/item.js'
+import { itemDidScroll }  from '../redux/actions/item.js'
 
 const mapStateToProps = (state) => {
   return {}
@@ -8,8 +8,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadMercuryStuff: (item) => dispatch(itemLoadMercuryStuff(item))
+    // scrollHandler: () => dispatch(itemDidScroll(true))
   }
+  // return {
+  //   loadMercuryStuff: (item) => dispatch(itemLoadMercuryStuff(item))
+  // }
+  return {}
 }
 
 let FeedItemContainer = connect(

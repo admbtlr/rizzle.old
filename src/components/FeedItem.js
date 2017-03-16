@@ -8,26 +8,18 @@ class FeedItem extends React.Component {
     this.props = props
     this.fontClass = this.getFontClass()
     this.multiply = this.isMultiply()
+    this.border = this.hasBorder()
     this.gradient = this.getGradient()
     // this.bgColor = this.multiply ? this.getBGColor() : 'rgba(0,0,0,0.35)'
     this.headerClasses = classNames(this.getHeaderClasses())
   }
 
-  // componentWillReceiveProps(props) {
-  //   console.log('Received props')
-  // }
-
   componentDidMount () {
-    this.loadMercuryStuff()
+    // this.loadMercuryStuff()
     this.resizeTitleFontToFit()
-  }
-
-  loadMercuryStuff () {
-    // let url = '/api/mercury?url=' + encodeURIComponent(this.props.item.url)
-    // if (window.cordova) {
-    //   url = 'https://mercury.postlight.com/parser?url='+encodeURIComponent(this.props.item.url)
-    // }
-    this.props.loadMercuryStuff(this.props.item)
+    this.markShortParagraphs()
+    this.markFirstParagraph()
+    this.hideFeedFlare()
   }
 
   resizeTitleFontToFit () {
@@ -47,6 +39,26 @@ class FeedItem extends React.Component {
     }
   }
 
+  markShortParagraphs () {
+    const paras = this.article.getElementsByTagName('p')
+    for (let i = 0; i < paras.length; i++) {
+      if (paras[i].innerHTML.replace(/<.*?>/g, '').length < 160) {
+        paras[i].classList.add(styles.shortPara)
+      }
+    }
+  }
+
+  markFirstParagraph () {
+    this.article.getElementsByTagName('p')[0].classList.add(styles.firstPara)
+  }
+
+  hideFeedFlare () {
+    const feedflares = this.article.getElementsByClassName('feedflare')
+    for (var i = 0; i < feedflares.length; i++) {
+      feedflares[i].style.display = 'none'
+    }
+  }
+
   removePx(size) {
     return size.substr(0, size.length - 2)
   }
@@ -60,9 +72,15 @@ class FeedItem extends React.Component {
     if (this.multiply) {
       coverClasses = classNames(styles.cover, styles.coverMultiply)
     }
+    if (this.border) {
+      coverClasses = classNames(coverClasses, styles.coverBorder)
+    }
 
     return (
-      <article className={articleClasses} onClick={this.openLinksExternally}>
+      <article
+        className={articleClasses}
+        onClick={this.openLinksExternally}
+        ref={(article) => { this.article = article }}>
         <div className={coverClasses}>
           <div
             className={coverImageClasses}
@@ -91,9 +109,7 @@ class FeedItem extends React.Component {
         break
       }
       el = el.parentElement
-
     }
-    console.log(e)
   }
 
   getFontClass () {
@@ -123,6 +139,10 @@ class FeedItem extends React.Component {
 
   isMultiply () {
     return Math.random() > 0.5
+  }
+
+  hasBorder () {
+    return Math.random() > 0.7
   }
 
   getHeaderClasses = () => {

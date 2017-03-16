@@ -1,17 +1,19 @@
 import { connect } from 'react-redux'
 import Toolbar from '../components/Toolbar.js'
-import { itemDidScroll } from '../redux/actions/item.js'
+import { itemsKeepCurrentItemUnread } from '../redux/actions/items.js'
 
 const mapStateToProps = (state) => {
   return {
-    toolbar: state.toolbar
+    toolbar: state.toolbar,
+    numItems: state.items.items.length,
+    currentItem: state.items.items[state.items.index],
+    currentItemIndex: state.items.index
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showToolbar: (show) => dispatch(itemsFetchData(url)),
-    markRead: (url) => dispatch(itemMarkRead(url))
+    keepUnread: () => dispatch(itemsKeepCurrentItemUnread())
   }
 }
 

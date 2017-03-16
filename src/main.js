@@ -3,22 +3,23 @@
  */
 
 // Polyfill
-import 'babel-polyfill';
+import 'babel-polyfill'
 
 // Libraries
-import React from 'react';
-import { render } from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import configureStore from './redux/store/configureStore.js'
+import { itemsFetchData } from './redux/actions/items.js'
 import App from './components/App.js'
 
 // Base styling
-import './common/base.css';
+import './common/base.css'
 
+let store = window.store = {}
 
-window.startApp = function() {
-  const store = configureStore()
+const startApp = window.startApp = function () {
+  store = configureStore()
 
   render((
     <Provider store={store}>
@@ -26,6 +27,13 @@ window.startApp = function() {
     </Provider>
   ), document.getElementById('app'))
 }
+
+const fetchItems = window.fetchItems = function () {
+  store.dispatch(itemsFetchData())
+}
+
+document.addEventListener('deviceready', startApp, false)
+document.addEventListener('active', fetchItems, false)
 
 if (!window.cordova) {
   window.startApp()
