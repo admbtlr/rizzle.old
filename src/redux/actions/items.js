@@ -13,6 +13,14 @@ export function itemsHasErrored (bool) {
     hasErrored: bool
   }
 }
+
+export function itemHasErrored (bool) {
+  return {
+    type: 'ITEM_HAS_ERRORED',
+    hasErrored: bool
+  }
+}
+
 export function itemsIsLoading (bool) {
   return {
     type: ITEMS_IS_LOADING,

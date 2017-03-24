@@ -24,6 +24,14 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "id": "cordova-plugin-sqlite-2.sqlitePlugin",
+        "file": "plugins/cordova-plugin-sqlite-2/dist/sqlite-plugin.js",
+        "pluginId": "cordova-plugin-sqlite-2",
+        "clobbers": [
+            "sqlitePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -32,7 +40,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.1",
     "cordova-plugin-statusbar": "2.2.1",
     "cordova-plugin-splashscreen": "4.0.1",
-    "cordova-plugin-inappbrowser": "1.6.1"
-}
+    "cordova-plugin-inappbrowser": "1.6.1",
+    "cordova-plugin-sqlite-2": "1.0.4"
+};
 // BOTTOM OF METADATA
 });

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Toolbar from '../components/Toolbar.js'
-import { itemsKeepCurrentItemUnread } from '../redux/actions/items.js'
+import { itemsKeepCurrentItemUnread, itemsFetchData } from '../redux/actions/items.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    keepUnread: () => dispatch(itemsKeepCurrentItemUnread())
+    keepUnread: () => dispatch(itemsKeepCurrentItemUnread()),
+    fetchItems: () => dispatch(itemsFetchData())
   }
 }
 

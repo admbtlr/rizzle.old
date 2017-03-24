@@ -1,7 +1,17 @@
 import { itemsLoadMercuryStuff }  from '../actions/items.js'
 
-const initialState = {
-  items: [],
+export const initialState = {
+  items: [
+    {
+      feed_item_id: 9999999999,
+      published_at: 9999999999,
+      feed_name: 'rizzle',
+      url: '',
+      title: 'Oh noes! Nothing else to read.',
+      author: '',
+      body: '<a href="">Load more</a>'
+    }
+  ],
   index: 1
 }
 
@@ -37,7 +47,6 @@ export function items (state = initialState, action) {
         index
       }
     case 'ITEM_MARK_READ_SUCCESS':
-      // TODO actually we need to mark the item as read...
       let items = state.items
       items[state.index].readAt = Date.now()
       return {
@@ -100,13 +109,17 @@ function prepareItems (items) {
   return items
 }
 
-function interleaveItems(oldItems, newItems, currentItem, currentIndex) {
-  // TODO reset the currentIndex to wherever the currentItem now is
+function interleaveItems(oldItems, newItems) {
   let items = mergeDedupe(oldItems, newItems)
   items.sort((a, b) => a.published_at - b.published_at)
   return items
-  // return mergeDedupe(oldItems, newItems)
-  // return newItems
+}
+
+function removeReadItems(items) {
+  const now = Date.now()
+  items.filter((item) => {
+    return !(item.markRead && item.markRead - now > 1000*60*60*24)
+  })
 }
 
 function addMercuryStuffToItem (item, mercury) {

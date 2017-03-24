@@ -9,7 +9,9 @@ class FeedItem extends React.Component {
     this.fontClass = this.getFontClass()
     this.multiply = this.isMultiply()
     this.border = this.hasBorder()
+    this.color = this.getColor()
     this.gradient = this.getGradient()
+
     // this.bgColor = this.multiply ? this.getBGColor() : 'rgba(0,0,0,0.35)'
     this.headerClasses = classNames(this.getHeaderClasses())
   }
@@ -49,7 +51,10 @@ class FeedItem extends React.Component {
   }
 
   markFirstParagraph () {
-    this.article.getElementsByTagName('p')[0].classList.add(styles.firstPara)
+    const firstP = this.article.getElementsByTagName('p')[0]
+    if (firstP) {
+      firstP.classList.add(styles.firstPara)
+    }
   }
 
   hideFeedFlare () {
@@ -64,10 +69,10 @@ class FeedItem extends React.Component {
   }
 
   render () {
-    let {feed_item_id, feed_name, url, title, author, body, leadImg} = this.props.item
+    let {feed_name, url, title, author, body, leadImg} = this.props.item
     let bodyHtml = { __html: body }
-    let articleClasses = classNames(styles[this.fontClass], styles.itemArticle)
-    let coverImageClasses = classNames(styles.coverImage, styles.coverImageFixed)
+    let articleClasses = classNames(styles[this.fontClass], styles.itemArticle, styles[this.color.name])
+    let coverImageClasses = classNames(styles.coverImage, styles.coverImageFixed, this.isGuardian() && styles.coverImageGuardian)
     let coverClasses = classNames(styles.cover)
     if (this.multiply) {
       coverClasses = classNames(styles.cover, styles.coverMultiply)
@@ -79,7 +84,6 @@ class FeedItem extends React.Component {
     return (
       <article
         className={articleClasses}
-        onClick={this.openLinksExternally}
         ref={(article) => { this.article = article }}>
         <div className={coverClasses}>
           <div
@@ -112,6 +116,10 @@ class FeedItem extends React.Component {
     }
   }
 
+  isGuardian () {
+    return this.props.item.feed_name.indexOf('Guardian') !== -1
+  }
+
   getFontClass () {
     return 'fonts' + (Math.round((Math.random()*8))+1)
   }
@@ -122,19 +130,25 @@ class FeedItem extends React.Component {
     return colors[index]
   }
 
+  pickOne (arr) {
+    return arr[Math.round(Math.random() * (arr.length - 1))]
+  }
+
+  getColor () {
+    return this.pickOne(this.colors())
+  }
+
   getGradient () {
-    let gradients = [
-      'linear-gradient(to left, #B3FFAB , #12FFF7)',
-      'linear-gradient(to left, #34e89e , #0f3443)',
-      'linear-gradient(to left, #30E8BF , #FF8235)',
-      'linear-gradient(to left, #D66D75 , #E29587)',
-      'linear-gradient(to left, #C33764 , #1D2671)',
-      'linear-gradient(to left, #F7971E , #FFD200)',
-      'linear-gradient(to left, #F3904F , #3B4371)',
-      'linear-gradient(to left, #4568DC , #B06AB3)',
-      'linear-gradient(to left, #43C6AC , #F8FFAE)'
+    const directions = [
+      'to left',
+      'to bottom'
     ]
-    return gradients[Math.round(Math.random() * gradients.length)]
+    const color2 = this.getColor()
+    return `linear-gradient(${this.pickOne(directions)}, ${this.color.hex}, ${this.pickOne(this.colors()).hex})`
+  }
+
+  isGradient () {
+    return Math.random() > 0.5
   }
 
   isMultiply () {
@@ -186,6 +200,58 @@ class FeedItem extends React.Component {
     return titleWidth
   }
 
+  colors = () => {
+    return [
+      {
+        name: 'red1',
+        hex: '#D66D75'
+      },
+      {
+        name: 'red2',
+        hex: '#C33764'
+      },
+      {
+        name: 'orange1',
+        hex: '#FF8235'
+      },
+      {
+        name: 'orange2',
+        hex: '#F7971E'
+      },
+      {
+        name: 'yellow1',
+        hex: '#FFD200'
+      },
+      {
+        name: 'yellow2',
+        hex: '#F8FFAE'
+      },
+      {
+        name: 'green1',
+        hex: '#B3FFAB'
+      },
+      {
+        name: 'green2',
+        hex: '#30E8BF'
+      },
+      {
+        name: 'blue1',
+        hex: '#4568DC'
+      },
+      {
+        name: 'blue2',
+        hex: '#12FFF7'
+      },
+      {
+        name: 'purple1',
+        hex: '#B06AB3'
+      },
+      {
+        name: 'brown1',
+        hex: '#E29587'
+      }
+    ]
+  }
 
 }
 

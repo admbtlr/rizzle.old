@@ -1,5 +1,18 @@
 @import "../common/variables.css";
 
+$red1: #D66D75;
+$red2: #C33764;
+$orange1: #FF8235;
+$orange2: #F7971E;
+$yellow1: #FFD200;
+$yellow2: #F8FFAE;
+$green1: #B3FFAB;
+$green2: #30E8BF;
+$blue1: #4568DC;
+$blue2: #12FFF7;
+$purple1: #B06AB3;
+$brown1: #E29587;
+
 .item {
   height: 100vh;
 }
@@ -21,7 +34,7 @@
 
 .cover {
   min-height: 100vh;
-  background-color: #ee3399;
+  background-color: white;
   color: white;
   position: relative;
 }
@@ -172,6 +185,11 @@ h2, aside {
   left: 0;
   background-size: cover;
   background-position: center;
+}
+
+.coverImageGuardian {
+  transform: scale(1.2);
+  transform-origin: top;
 }
 
 .body {
@@ -369,5 +387,188 @@ h2, aside {
   }
   .body {
     font-family: "Hoefler Text", serif;
+  }
+}
+
+.itemArticle {
+  &.red1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $red1;
+
+      &:first-letter {
+        color: $red1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $red1 19px, $red1 24px);
+      }
+    }
+  }
+  &.red2 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $red2;
+
+      &:first-letter {
+        color: $red2;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $red2 19px, $red2 24px);
+      }
+    }
+  }
+  &.orange1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $orange1;
+
+      &:first-letter {
+        color: $orange1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $orange1 19px, $orange1 24px);
+      }
+    }
+  }
+  &.orange2 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $orange2;
+
+      &:first-letter {
+        color: $orange2;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $orange2 19px, $orange2 24px);
+      }
+    }
+  }
+  &.yellow1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $yellow1;
+
+      &:first-letter {
+        color: $yellow1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $yellow1 19px, $yellow1 24px);
+      }
+    }
+  }
+  &.yellow2 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $yellow2;
+
+      &:first-letter {
+        color: $yellow2;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $yellow2 19px, $yellow2 24px);
+      }
+    }
+  }
+  &.green1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $green1;
+
+      &:first-letter {
+        color: $green1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $green1 19px, $green1 24px);
+      }
+    }
+  }
+  &.green2 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $green2;
+
+      &:first-letter {
+        color: $green2;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $green2 19px, $green2 24px);
+      }
+    }
+  }
+  &.blue1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $blue1;
+
+      &:first-letter {
+        color: $blue1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $blue1 19px, $blue1 24px);
+      }
+    }
+  }
+  &.blue2 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $blue2;
+
+      &:first-letter {
+        color: $blue2;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $blue2 19px, $blue2 24px);
+      }
+    }
+  }
+  &.purple1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $purple1;
+
+      &:first-letter {
+        color: $purple1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $purple1 19px, $purple1 24px);
+      }
+    }
+  }
+  &.brown1 {
+    *:not(blockquote) p:not(.shortPara):first-of-type {
+      border-color: $brown1;
+
+      &:first-letter {
+        color: $brown1;
+      }
+    }
+
+    .body {
+      a, a:active, a:visited {
+        background-image: linear-gradient(to bottom, transparent 19px, $brown1 19px, $brown1 24px);
+      }
+    }
   }
 }

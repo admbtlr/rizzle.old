@@ -26,6 +26,10 @@ const startApp = window.startApp = function () {
       <App />
     </Provider>
   ), document.getElementById('app'))
+
+  document.addEventListener('resume', function () {
+    store.dispatch(itemsFetchData())
+  }, false)
 }
 
 const fetchItems = window.fetchItems = function () {
@@ -33,7 +37,6 @@ const fetchItems = window.fetchItems = function () {
 }
 
 document.addEventListener('deviceready', startApp, false)
-document.addEventListener('active', fetchItems, false)
 
 if (!window.cordova) {
   window.startApp()

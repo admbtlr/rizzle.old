@@ -18,6 +18,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.adambutler.rizzle"
+        },
+        "cordova-plugin-sqlite-2": {
+            "PACKAGE_NAME": "com.adambutler.rizzle"
         }
     },
     "dependent_plugins": {}
