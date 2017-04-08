@@ -5,7 +5,8 @@ export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING'
 export const ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS'
 export const ITEM_MARK_READ_SUCCESS = 'ITEM_MARK_READ_SUCCESS'
 
-let feedWranglerAccessToken = '07de039941196f956e9e86e202574419'
+const feedWranglerAccessToken = '07de039941196f956e9e86e202574419'
+const itemsFetchBatchSize = 100
 
 export function itemsHasErrored (bool) {
   return {
@@ -55,28 +56,43 @@ export function itemsUpdateCurrentIndex (index) {
   }
 }
 
-export function itemsFetchData () {
-  const url = getUnreadItemsUrl()
+export function itemsFetchData (page) {
+  page = page || 0
+  const url = getUnreadItemsUrl(page)
   return (dispatch) => {
     dispatch(itemsIsLoading(true))
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw Error(response.statusText);
+          throw Error(response.statusText)
+        } else {
+          dispatch(itemsIsLoading(false))
+          receiveData(dispatch, response, page)
         }
-        dispatch(itemsIsLoading(false));
-        return response;
       })
-      .then((response) => response.json())
-      .then((feed) => dispatch(itemsFetchDataSuccess(feed.feed_items)))
-      .catch(() => dispatch(itemsHasErrored(true)));
+      .catch(() => dispatch(itemsHasErrored(true)))
   }
 }
 
-function getUnreadItemsUrl () {
-  let url = '/api/unread'
+function receiveData (dispatch, response, page) {
+  response.json()
+    .then((feed) => {
+      const items = feed.feed_items
+      if (items.length === itemsFetchBatchSize) {
+        dispatch(itemsFetchData(page + 1))
+      }
+      dispatch(itemsFetchDataSuccess(items))
+    })
+    .catch(() => dispatch(itemsHasErrored(true)))
+}
+
+function getUnreadItemsUrl (page) {
+  let url = '/api/unread?thing=1'
   if (window.cordova) {
     url = 'https://feedwrangler.net/api/v2/feed_items/list?read=false&access_token=' + feedWranglerAccessToken
+  }
+  if (page > 0) {
+    url += '&offset=' + (page * itemsFetchBatchSize)
   }
   return url
 }

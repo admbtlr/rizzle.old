@@ -121,6 +121,10 @@ h2, aside {
 .headerCentered {
   text-align: center;
   padding: 0 !important;
+
+  h1 {
+    margin: 0 !important;
+  }
 }
 
 .headerUnderlined {
@@ -266,9 +270,18 @@ h2, aside {
   }
 
   *:not(blockquote) p:not(.shortPara):first-of-type {
-    margin-top: calc($step*2);
-    border-top: 1px solid black;
-    padding-top: calc($step*2);
+    margin-top: calc($step*4);
+
+    &:before {
+      content: "";
+      display: block;
+      width: 33%;
+      margin: 0 33%;
+      height: 1px;
+      background-color: black;
+      position: relative;
+      top: calc($step*-2);
+    }
 
     &:first-letter {
       font-size: calc($step * 3.5);
@@ -393,7 +406,9 @@ h2, aside {
 .itemArticle {
   &.red1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $red1;
+      &:before {
+        background-color: $red1;
+      }
 
       &:first-letter {
         color: $red1;
@@ -408,7 +423,9 @@ h2, aside {
   }
   &.red2 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $red2;
+      &:before {
+        background-color: $red2;
+      }
 
       &:first-letter {
         color: $red2;
@@ -423,7 +440,9 @@ h2, aside {
   }
   &.orange1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $orange1;
+      &:before {
+        background-color: $orange1;
+      }
 
       &:first-letter {
         color: $orange1;
@@ -438,7 +457,9 @@ h2, aside {
   }
   &.orange2 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $orange2;
+      &:before {
+        background-color: $orange2;
+      }
 
       &:first-letter {
         color: $orange2;
@@ -453,7 +474,9 @@ h2, aside {
   }
   &.yellow1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $yellow1;
+      &:before {
+        background-color: $yellow1;
+      }
 
       &:first-letter {
         color: $yellow1;
@@ -468,7 +491,9 @@ h2, aside {
   }
   &.yellow2 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $yellow2;
+      &:before {
+        background-color: $yellow2;
+      }
 
       &:first-letter {
         color: $yellow2;
@@ -483,7 +508,9 @@ h2, aside {
   }
   &.green1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $green1;
+      &:before {
+        background-color: $green1;
+      }
 
       &:first-letter {
         color: $green1;
@@ -498,7 +525,9 @@ h2, aside {
   }
   &.green2 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $green2;
+      &:before {
+        background-color: $green2;
+      }
 
       &:first-letter {
         color: $green2;
@@ -513,7 +542,9 @@ h2, aside {
   }
   &.blue1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $blue1;
+      &:before {
+        background-color: $blue1;
+      }
 
       &:first-letter {
         color: $blue1;
@@ -528,7 +559,9 @@ h2, aside {
   }
   &.blue2 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $blue2;
+      &:before {
+        background-color: $blue2;
+      }
 
       &:first-letter {
         color: $blue2;
@@ -543,7 +576,9 @@ h2, aside {
   }
   &.purple1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $purple1;
+      &:before {
+        background-color: $purple1;
+      }
 
       &:first-letter {
         color: $purple1;
@@ -558,7 +593,9 @@ h2, aside {
   }
   &.brown1 {
     *:not(blockquote) p:not(.shortPara):first-of-type {
-      border-color: $brown1;
+      &:before {
+        background-color: $brown1;
+      }
 
       &:first-letter {
         color: $brown1;

@@ -1,5 +1,3 @@
-import { itemsLoadMercuryStuff }  from '../actions/items.js'
-
 export const initialState = {
   items: [
     {
@@ -9,7 +7,8 @@ export const initialState = {
       url: '',
       title: 'Oh noes! Nothing else to read.',
       author: '',
-      body: '<a href="">Load more</a>'
+      body: '<a href="">Load more</a>',
+      _id: '9999999999'
     }
   ],
   index: 1
@@ -34,10 +33,32 @@ export function itemsIsLoading (state = false, action) {
 }
 
 export function items (state = initialState, action) {
-  let items = []
+  let items = [], newItems = []
   switch (action.type) {
+    case 'UPDATE_ITEM':
+      newItems = state.items.map(item =>
+        item._id === action.item._id ?
+          action.item :
+          item
+      )
+      return {
+        ...state,
+        items: newItems
+      }
+
+    case 'INSERT_ITEM':
+      if (action.item._id === '9999999999') {
+        return state
+      }
+      return {
+        ...state,
+        items: [
+          action.item,
+          ...state.items
+        ]
+      }
+
     case 'ITEMS_FETCH_DATA_SUCCESS':
-      // TODO implement state.currentItem and state.currentIndex
       const currentItem = state.items[state.index]
       items = interleaveItems(state.items, action.items).filter((item) => !item.readAt)
       const index = items.indexOf(currentItem) === -1 ? 0 : items.indexOf(currentItem)
@@ -46,20 +67,18 @@ export function items (state = initialState, action) {
         items,
         index
       }
+
     case 'ITEM_MARK_READ_SUCCESS':
-      let items = state.items
+      items = state.items
       items[state.index].readAt = Date.now()
-      return {
-        ...state,
-        items
-      }
+      return Object.assign({}, state, { items })
     case 'ITEMS_UPDATE_CURRENT_INDEX':
       return {
         ...state,
         index: action.index
       }
     case 'ITEMS_KEEP_CURRENT_ITEM_UNREAD':
-      let newItems = state.items
+      newItems = state.items
       newItems[state.index].keepUnread = true
       return {
         ...state,
@@ -67,7 +86,7 @@ export function items (state = initialState, action) {
       }
     case 'ITEM_LOAD_MERCURY_STUFF_SUCCESS':
       items = state.items.map((item) => {
-        if (item === action.item) {
+        if (item._id === action.item._id) {
           return addMercuryStuffToItem(item, action.mercuryStuff)
         } else {
           return item
@@ -83,36 +102,43 @@ export function items (state = initialState, action) {
 }
 
 function mergeDedupe (oldItems, newItems) {
-  let items = [...oldItems]
-  newItems.forEach(function(item) {
-    let exists = false
-      oldItems.forEach(function(oldItem) {
-      if (item.feed_item_id === oldItem.feed_item_id) {
-        exists = true
-          }
-      })
-    if (!exists) {
-      items.push(item)
-      }
-  })
-  return items
-}
+  let items = []
+  let keepUnread = oldItems.filter((item) => item.keepUnread)
 
-function prepareItems (items) {
-  window.setTimeout(() => {
-    items.forEach((item) => {
-      if (!item.leadImg) {
-        dispatch(itemsLoadMercuryStuff(item))
+  // go through new items, replacing new ones with matching old ones (to get Mercury stuff)
+  // add any unread old items
+  newItems.forEach(function(newItem) {
+    let match = false
+    oldItems.forEach(function(oldItem) {
+      if (newItem.feed_item_id === oldItem.feed_item_id) {
+        match = oldItem
       }
     })
-  }, 0)
+    items.push(match || newItem)
+  })
+
+  oldItems.forEach(function(oldItem) {
+    if (!items.find((item) => item.feed_item_id === oldItem.feed_item_id)) {
+      items.push(oldItem)
+    }
+  })
+
   return items
 }
 
 function interleaveItems(oldItems, newItems) {
-  let items = mergeDedupe(oldItems, newItems)
+  let items = mergeDedupe(oldItems, newItems).map(function(item) {
+    return {
+      ...item,
+      _id: item._id ? item._id : id()
+    }
+  })
   items.sort((a, b) => a.published_at - b.published_at)
   return items
+}
+
+function id() {
+  return Math.random().toString(36).substring(7)
 }
 
 function removeReadItems(items) {

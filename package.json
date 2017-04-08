@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "server": "node start.js",
-    "build": "webpack -p --progress --config webpack.production.config.js",
+    "build": "webpack --progress --config webpack.production.config.js",
     "test": "jest",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "clean": "rm build/app.js"
@@ -65,18 +65,15 @@
     "classnames": "^2.2.5",
     "express": "^4.12.3",
     "immutable": "^3.8.1",
-    "pouch-redux-middleware": "^0.6.0",
     "pouchdb": "^6.1.2",
+    "pouchdb-adapter-cordova-sqlite": "^2.0.2",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-fittext": "0.0.7",
-    "react-parallax": "^1.2.3",
     "react-redux": "^5.0.3",
     "react-router": "^2.0.0",
     "react-swipeable-views": "^0.10.7",
     "redux": "^3.6.0",
     "redux-pouchdb": "^0.1.1",
-    "redux-pouchdb-plus": "^0.8.1",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.2"
   }

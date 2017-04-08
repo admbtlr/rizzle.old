@@ -16,20 +16,24 @@ import App from './components/App.js'
 // Base styling
 import './common/base.css'
 
+let appStarted = false
 let store = window.store = {}
 
 const startApp = window.startApp = function () {
-  store = configureStore()
+  if (!appStarted) {
+    store = configureStore()
 
-  render((
-    <Provider store={store}>
-      <App />
-    </Provider>
-  ), document.getElementById('app'))
+    render((
+      <Provider store={store}>
+        <App />
+      </Provider>
+    ), document.getElementById('app'))
 
-  document.addEventListener('resume', function () {
-    store.dispatch(itemsFetchData())
-  }, false)
+    document.addEventListener('resume', function () {
+      store.dispatch(itemsFetchData())
+    }, false)
+    appStarted = true
+  }
 }
 
 const fetchItems = window.fetchItems = function () {

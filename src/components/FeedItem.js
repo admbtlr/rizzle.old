@@ -18,7 +18,7 @@ class FeedItem extends React.Component {
 
   componentDidMount () {
     // this.loadMercuryStuff()
-    this.resizeTitleFontToFit()
+    // this.resizeTitleFontToFit()
     this.markShortParagraphs()
     this.markFirstParagraph()
     this.hideFeedFlare()
@@ -84,7 +84,8 @@ class FeedItem extends React.Component {
     return (
       <article
         className={articleClasses}
-        ref={(article) => { this.article = article }}>
+        ref={(article) => { this.article = article }}
+        onClick={this.openLinksExternally}>
         <div className={coverClasses}>
           <div
             className={coverImageClasses}
